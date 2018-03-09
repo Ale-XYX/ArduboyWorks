@@ -1,27 +1,15 @@
 // TicTacToe
 // Pygasm 2018
 
-#include <Arduboy2.h>
-#include "Sprites.h"
-#include "Public.h"
+#include "Game.h"
 
-Arduboy2 arduboy;
-Board board;
+Game game;
 
-void setup() {
-  arduboy.begin();
-  
-  arduboy.setFrameRate(fps);
-  
-  arduboy.clear();
+void setup() 
+{
+  game.title();
 }
 
 void loop() {
-  if (!arduboy.nextFrame()) {return;}
-  arduboy.pollButtons();
-  arduboy.clear();
-
-  board.upd(arduboy);
-
-  arduboy.display();
+  game.game();
 }
