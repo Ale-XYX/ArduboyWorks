@@ -17,9 +17,10 @@ class Game
     int players[3] = {1, 0, 0};
     
     void title();
-    void main(ArduboyTones & sound);
+    void main();
     
     Arduboy2 arduboy;
+    ArduboyTones tones(arduboy.audio.enabled);
     Board board;
     Selector selector;
     

@@ -1,7 +1,6 @@
 // Game.cpp
 // Pygasm 2018
 
-#include <ArduboyTones.h>
 #include "Game.h"
 
 const unsigned char Game::logo[] PROGMEM = 
@@ -17,8 +16,6 @@ const unsigned char Game::logo[] PROGMEM =
 void Game::title()
 {
   arduboy.boot();
-
-  //ArduboyTones sound(arduboy.audio.enabled);
   
   arduboy.setFrameRate(60);
   arduboy.drawBitmap(12, 23, logo, 103, 17);
@@ -30,14 +27,14 @@ void Game::title()
   arduboy.clear();
 }
 
-void Game::main(ArduboyTones & sound)
+void Game::main()
 {
   if (!arduboy.nextFrame()) {return;}
   arduboy.pollButtons();
   arduboy.clear();
 
   board.upd(arduboy, boardCells);
-  selector.upd(arduboy, sound);
+  selector.upd(arduboy);
 
   if (players[0] == 1) {players[0]++;}
   else if (players[0] == 2) {players[0]--;}
