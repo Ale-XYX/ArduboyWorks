@@ -2,6 +2,7 @@
 // Pygasm 2018
 
 #include <Arduboy2.h>
+#include <ArduboyTones.h>
 #include "Classes.h"
 
 class Game
@@ -16,10 +17,13 @@ class Game
     int players[3] = {1, 0, 0};
     
     void title();
-    void game();
+    void main(ArduboyTones & sound);
     
     Arduboy2 arduboy;
     Board board;
     Selector selector;
+    
+  private:
+    static const unsigned char logo[];
 };
 

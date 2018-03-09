@@ -3,6 +3,7 @@
 
 #pragma once
 #include <Arduboy2.h>
+#include <ArduboyTones.h>
 
 // Board
 class Board
@@ -21,7 +22,7 @@ class Board
 class Selector
 {
   public:
-    void upd(Arduboy2 & arduboy);
+    void upd(Arduboy2 & arduboy, ArduboyTones & sound);
     int posX[3] = {43, 59, 75};
     int posY[3] = {9, 25, 41};
     int len[2] = {15, 15};

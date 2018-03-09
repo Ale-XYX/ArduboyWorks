@@ -2,6 +2,7 @@
 // Pygasm 2018
 
 #include <Arduboy2.h>
+#include <ArduboyTones.h>
 #include "Classes.h"
 
 // Board define
@@ -26,12 +27,12 @@ const unsigned char Board::image[] PROGMEM =
 
 
 // Selector define
-void Selector::upd(Arduboy2 & arduboy)
+void Selector::upd(Arduboy2 & arduboy, ArduboyTones & sound)
 {
-  if (arduboy.justPressed(LEFT_BUTTON)) {indexX--;}
-  if (arduboy.justPressed(UP_BUTTON)) {indexY--;}
-  if (arduboy.justPressed(RIGHT_BUTTON)) {indexX++;}
-  if (arduboy.justPressed(DOWN_BUTTON)) {indexY++;}
+  if (arduboy.justPressed(LEFT_BUTTON)) {indexX--; sound.tone(1000, 250);}
+  if (arduboy.justPressed(UP_BUTTON)) {indexY--; sound.tone(1000, 250);}
+  if (arduboy.justPressed(RIGHT_BUTTON)) {indexX++; sound.tone(1000, 250);}
+  if (arduboy.justPressed(DOWN_BUTTON)) {indexY++; sound.tone(1000, 250);}
 
   if (indexX > 2) {indexX = 0;}
   else if (indexX < 0) {indexX = 2;}
