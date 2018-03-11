@@ -23,8 +23,8 @@ class Board
 // Selector
 class Selector
 {
-  public:
-    void upd(Arduboy2 & arduboy, ArduboyTones & sound);
+  public: 
+    void upd(Arduboy2 & arduboy, ArduboyTones & sound, int cells[3][9][2], int& player);
     int posX[3] = {43, 59, 75};
     int posY[3] = {9, 25, 41};
     int len[2] = {15, 15};

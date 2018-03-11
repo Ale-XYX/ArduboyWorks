@@ -36,11 +36,11 @@ void Game::main()
   arduboy.clear();
 
   board.upd(arduboy, boardCells);
-  selector.upd(arduboy, sound);
+  selector.upd(arduboy, sound, boardCells, player);
 
-  if (players[0] == 1) {players[0]++;}
-  else if (players[0] == 2) {players[0]--;}
-
+  if (player == 1) {arduboy.print("X's Turn!");}
+  else if (player == 2) {arduboy.print("O's Turn!");}
+  
   arduboy.display();
 }
 

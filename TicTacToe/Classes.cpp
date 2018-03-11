@@ -53,12 +53,38 @@ void Board::upd(Arduboy2 & arduboy, int cells[3][9][2])
 
 
 // Selector define
-void Selector::upd(Arduboy2 & arduboy, ArduboyTones & sound)
+void Selector::upd(Arduboy2 & arduboy, ArduboyTones & sound, int cells[3][9][2], int& player)
 {
   if (arduboy.justPressed(LEFT_BUTTON)) {indexX--; sound.tone(300, 50);}
   if (arduboy.justPressed(UP_BUTTON)) {indexY--; sound.tone(300, 50);}
   if (arduboy.justPressed(RIGHT_BUTTON)) {indexX++; sound.tone(300, 50);}
   if (arduboy.justPressed(DOWN_BUTTON)) {indexY++; sound.tone(300, 50);}
+  if (arduboy.justPressed(A_BUTTON)) 
+  {
+    int index;
+    for (int i; i < 9; i++)
+    {
+      if (cells[0][i][0] == indexX and cells[0][i][1] == indexY)
+      {
+        index = i;
+        break;
+      }
+    }
+
+    if (cells[1][index][0] == 0)
+    {
+      if (player == 1) 
+      {
+        cells[1][index][0] = 1;
+        player++;
+      }
+      else if (player == 2) 
+      {
+        cells[1][index][0] = 2;
+        player--;
+      }
+    }
+  }
 
   if (indexX > 2) {indexX = 0;}
   else if (indexX < 0) {indexX = 2;}
