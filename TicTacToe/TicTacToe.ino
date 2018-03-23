@@ -1,15 +1,16 @@
-// TicTacToe
-// Pygasm 2018
+// Main game
 
 #include "Game.h"
 
 Game game;
 
-void setup() 
-{
-  game.title();
+void setup() {
+  game.gameSetup();
 }
 
 void loop() {
-  game.main();
+  game.gameLoop();
 }
+
+// Pygasm 2018
+
