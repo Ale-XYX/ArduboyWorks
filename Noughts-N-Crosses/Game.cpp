@@ -1,7 +1,6 @@
-// Include libs
+// Game.cpp
 #include "Game.h"
 
-// Image at splash screen
 const unsigned char Game::logoImage[] PROGMEM = {
 0x38, 0x48, 0x88, 0x8, 0x4, 0x2, 0x1, 0xc1, 0x1, 0x1, 0x1, 0x2, 0x4, 0x38, 0x20, 0x20, 0x10, 0x70, 0x40, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xc7, 0xc7, 0xc7, 0xff, 
 0xff, 0xff, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xc0, 0xc0, 0xc0, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0x7, 0x7, 0x7, 0x87, 0x87, 0x87, 0x87, 0x87, 0x87, 0x00, 0x00, 
@@ -15,7 +14,6 @@ const unsigned char Game::logoImage[] PROGMEM = {
 0x1, 0x1, 0x00, 0x00, 0x00, 0x1, 0x1, 0x1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1, 0x1, 0x1, 
 };
 
-// Title screen images
 const unsigned char Game::titleImage[] PROGMEM = {
   0xfe, 0xff, 0xff, 0x7, 0x7, 0x7, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xff, 0x7, 0x7, 0x7, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xfe, 0x00, 0x00, 0x00, 0xfe, 
   0xff, 0xfe, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xff, 0x7, 0x7, 0x47, 0xe7, 0xe7, 0xc2, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xfe, 0x70, 0x70, 0x70, 0xfe, 0xff, 0xfe, 0x00, 0x00, 0x00, 0x2, 0x7, 
@@ -35,7 +33,6 @@ const unsigned char Game::titleImage[] PROGMEM = {
   0x3, 0x3, 0x3, 0x3, 0x1, 
 };
 
-// Images of board
 const unsigned char Game::boardImage[] PROGMEM = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -55,38 +52,28 @@ const unsigned char Game::boardImage[] PROGMEM = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1f, 0x1f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  
 };
 
-// Selector image
 const unsigned char Game::selectorImage[] PROGMEM = {
   0xff, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0xff, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 
 };
 
-// Noughts/Crosses
 const unsigned char Game::noughtImage[] PROGMEM = {0xfc, 0xfc, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0xfc, 0xfc, 0x7, 0x7, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x7, 0x7};
 const unsigned char Game::crossImage[] PROGMEM = {0x3, 0x3, 0xc, 0xc, 0xb0, 0xf0, 0xe0, 0xf0, 0xb0, 0xc, 0xc, 0x3, 0x3, 0x18, 0x18, 0x6, 0x6, 0x1, 0x1, 0x00, 0x1, 0x1, 0x6, 0x6, 0x18, 0x18};
 
-// Update game board
 void Game::updateGrid(uint16_t x, uint16_t y) {
-  // Draw board
   arduboy.drawBitmap(x, y, boardImage, 61, 61);
   
   for (uint8_t yi = 0; yi < 3; ++yi) {
-    
-    // For loop x
     for (uint8_t xi = 0; xi < 3; ++xi) {
-      
-      // Define pos
       uint16_t yPos = y + (yi * 21);
       uint16_t xPos = x + (xi * 21);
 
-      // If grid value is Nought, draw nought, cross, draw cross.
       if (grid[yi][xi] == Cell::Nought) {
         arduboy.drawBitmap(xPos + 3, yPos + 3, noughtImage, 13, 13);
       } else if (grid[yi][xi] == Cell::Cross) {
         arduboy.drawBitmap(xPos + 3, yPos + 3, crossImage, 13, 13);
       }
 
-      // If the selector is the same as the iterables, then draw selector at position
       if(xi == selector.x && yi == selector.y) {
         arduboy.drawBitmap(xPos + 1, yPos + 1, selectorImage, 17, 17);
       }
@@ -101,16 +88,11 @@ void Game::updatePlayerPanel(uint16_t x, uint16_t y) {
     // Set y position
     uint16_t yPos = y + (yi * 15);
 
-    // Set cursor for printing
     arduboy.setCursor(x + 15, yPos + 2);
 
-    // Print "P" then iterable plus 1 to represent player 1 and 2
     arduboy.print(F("P"));
     arduboy.print(yi + 1);
 
-    // Draw hollow rect
-    // If the enum value of player is the same as the iterable
-    // Draw a filled rect to represent that players turn
     arduboy.drawRect(x, yPos, 10, 10);
     if(static_cast<uint8_t>(player) - 1 == yi) {arduboy.fillRect(x + 2, yPos + 2, 6, 6);}
   }
@@ -118,79 +100,53 @@ void Game::updatePlayerPanel(uint16_t x, uint16_t y) {
 
 // Check input and perform according actions
 void Game::updateInput() {
-  
-  // If in game and pressed arrow buttons
-  // Increment the selectors x/y value
-  // If the x/y value is higher than 2 or lower than 0
-  // Set them to 0 and 2 respectively
   if (arduboy.justPressed(RIGHT_BUTTON) and gstate == 0 and gscreen == 1) {
     selector.x++;
     sound.tone(300, 75);
     if (selector.x > 2) {selector.x = 0;}
-  } 
+  }
   if (arduboy.justPressed(LEFT_BUTTON) and gstate == 0 and gscreen == 1) {
     selector.x--;
     sound.tone(300, 75);
     if (selector.x < 0) {selector.x = 2;}
-  } 
+  }
   if (arduboy.justPressed(UP_BUTTON) and gstate == 0 and gscreen == 1) {
     selector.y--;
     sound.tone(300, 75);
     if (selector.y < 0) {selector.y = 2;}
-  } 
+  }
+  
   if (arduboy.justPressed(DOWN_BUTTON) and gstate == 0 and gscreen == 1) {
     selector.y++;
     sound.tone(300, 75);
     if (selector.y > 2) {selector.y = 0;}
   }
 
-  // If the screen is game, and the game is not paused or someone won
   if (arduboy.justPressed(A_BUTTON) and gstate == 0 and gscreen == 1) {
-
-    // If the chosen area by the selector is empty
     if (grid[selector.y][selector.x] == Cell::Empty) {
-
-      // Set the grid value to the players current cell state
-      // Set player to Cell::Cross if currently Cell::Nought, Cell::Nought if otherwise
-      // Run updateWinners() in order to return if any matches were found
       grid[selector.y][selector.x] = player;
       player = (player == Cell::Nought) ? Cell::Cross : Cell::Nought;
       Cell winrar = updateWinners();
-
-      // If the returned winner is empty, check if there are any spaces left
-      // If there are none, set gstate to 2 with winner still empty and play the lose sound
-      // Else, play normal play sound
       if (winrar == Cell::Empty) {
         if (isCatsGame()) {
           sound.tone(400, 100, 300, 100, 200, 100);
           gstate = 2;
         } else {sound.tone(200, 100, 150, 100);}
-
-      // If the returned winner isnt empty
-      // Play the win sound,
-      // Set the winner to the returned value
-      // Set gstate to 2,
       } else {
         sound.tone(200, 100, 300, 100, 400, 100);
         winner = winrar;
         gstate = 2;
       }
-      
-    // If the selected area is not empty
-    // Play the denied sound
     } else {
       sound.tone(100, 100);
     }
+  } 
   
-  // If the A button is pressed and the gscreen is the title
-  // Change the screen to the main game and play the start sound
-  } else if (arduboy.justPressed(A_BUTTON) and gscreen == 0) {
+  if (arduboy.justPressed(A_BUTTON) and gscreen == 0) {
     sound.tone(200, 100, 300, 100);
     gscreen++;
   }
 
-  // If the B button is pressed and the game state is not already in a winner state or a paused state
-  // Set the game state to paused and play the paused sound
   if (arduboy.justPressed(B_BUTTON) and gstate != 1 and gstate != 2) {
     sound.tone(400, 100, 500, 100);
     gstate = 1;
@@ -308,3 +264,4 @@ void Game::gameLoop() {
   arduboy.display();
 }
 
+// Pygasm 2018

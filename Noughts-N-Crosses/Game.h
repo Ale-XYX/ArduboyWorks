@@ -1,3 +1,4 @@
+// Game.h
 #include <Arduboy2.h>
 #include <ArduboyTones.h>
 #include <stdint.h>
@@ -62,4 +63,4 @@ class Game {
     static const unsigned char crossImage[];
     static const unsigned char noughtImage[];
 };
-
+// Pygasm 2018
