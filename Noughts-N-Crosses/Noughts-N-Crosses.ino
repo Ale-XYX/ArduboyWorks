@@ -5,6 +5,8 @@
 Game game;
 
 void setup() {
+  Serial.begin(9600);
+  
   game.gameSetup();
 }
 

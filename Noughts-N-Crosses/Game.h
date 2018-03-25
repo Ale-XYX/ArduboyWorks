@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 enum class Cell : uint8_t {
-  Empty, Nought, Cross
+  Empty, Cross, Nought
 };
 
 class Point2 {
@@ -17,23 +17,26 @@ class Point2 {
 
 class Game {
   public:
-    byte player = 0;
     byte gstate = 0;
-    byte gscreen = 1;
+    byte gscreen = 0;
     
     void updateGrid(uint16_t x, uint16_t y);
     void updatePlayerPanel(uint16_t x, uint16_t y);
     void updateInput();
     void updateGameState();
+    void updateGameScreen();
     void gameSetup();
     void gameLoop();
+    bool isCatsGame();
     
     Arduboy2 arduboy;
     ArduboyTones sound = ArduboyTones(arduboy.audio.enabled);
 
+    Cell player = randomCell();
     Cell winner;
     Cell grid[3][3];
     Cell updateWinners();
+    Cell randomCell();
     Point2 selector;
     Point2 winningSets[8][3] = {
       {{0, 0}, {0, 1}, {0, 2}},
@@ -50,6 +53,8 @@ class Game {
 
   private:
     static const unsigned char logoImage[];
+
+    static const unsigned char titleImage[];
     
     static const unsigned char boardImage[];
     static const unsigned char selectorImage[];
