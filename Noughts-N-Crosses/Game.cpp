@@ -6,8 +6,7 @@
 void Game::gameSetup() {
   arduboy.boot(); // So I can use my custom splash
   arduboy.audio.begin();
-  arduboy.audio.on();
-
+  
   selector.x = 1;
   selector.y = 1;
 
