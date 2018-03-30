@@ -3,7 +3,8 @@
 #include "classes.h"
 
 // Functions
-void Game::gameSetup() {
+void Game::gameBoot() {
+  Serial.begin(9600); // Begin Screen Mirroring
   arduboy.boot(); // So I can use my custom splash
   arduboy.audio.begin();
   

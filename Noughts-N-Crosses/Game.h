@@ -5,7 +5,7 @@
 
 class Game {
   public:
-    void gameSetup();
+    void gameBoot();
     void gameLoop();
 
     void titleLogic();
