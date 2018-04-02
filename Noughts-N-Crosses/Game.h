@@ -1,6 +1,5 @@
 #include <Arduboy2.h>
 #include <ArduboyTones.h>
-#include <stdint.h>
 #include "classes.h"
 
 class Game {
@@ -14,8 +13,8 @@ class Game {
     void gameLogic();
     void gameDraw();
 
-    Cell winCheck();
     bool drawCheck();
+    Cell winCheck();
 
     Arduboy2 arduboy;
     ArduboyTones arSound = ArduboyTones(arduboy.audio.enabled);

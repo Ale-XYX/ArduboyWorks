@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include "game.h"
 #include "classes.h"
 
@@ -167,6 +166,17 @@ void Game::gameDraw() {
   }
 }
 
+bool Game::drawCheck() {
+  for (uint8_t y = 0; y < 3; y++) {
+    for (uint8_t x = 0; x < 3; x++) {
+      if (grid[y][x] == Cell::Empty) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
 Cell Game::winCheck() {
   for (uint8_t i = 0; i < 8; i++) {
     Point2 a = winningSets[i][0];
@@ -179,17 +189,6 @@ Cell Game::winCheck() {
     }
   }
   return Cell::Empty;
-}
-
-bool Game::drawCheck() {
-  for (uint8_t y = 0; y < 3; y++) {
-    for (uint8_t x = 0; x < 3; x++) {
-      if (grid[y][x] == Cell::Empty) {
-        return false;
-      }
-    }
-  }
-  return true;
 }
 
 // Images
